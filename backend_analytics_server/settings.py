@@ -25,8 +25,22 @@ SECRET_KEY = "django-insecure-7t0idgqf_wpou4ds@pg8)4u@p=y3ql+b#_6r5782_06&fyq=&l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
+CSRF_TRUSTED_ORIGINS = [
+  "https://*.app.github.dev", # Solo si utiliza Codespaces
+  "https://localhost:8000",
+  "http://127.0.0.1:8000"
+]
+
+ALLOWED_HOSTS = [
+  "*",
+]
+
+# Fallo: acceso sin autenticación
+LOGIN_URL = '/login/'
+
+# Éxito: luego de autenticación exitosa
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -100,6 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
@@ -121,7 +138,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, STATIC_URL),
 ]
 
-API_URL = 'https://jsonplaceholder.typicode.com/posts'
+API_URL = 'https://JosephMiranda87.pythonanywhere.com/landing/api/index/'
 
 
 
