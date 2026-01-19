@@ -34,12 +34,11 @@ DEBUG = True
 CSRF_TRUSTED_ORIGINS = [
   "https://*.app.github.dev", # Solo si utiliza Codespaces
   "https://localhost:8000",
-  "http://127.0.0.1:8000"
+  "http://127.0.0.1:8000",
+  "https://*.up.railway.app",
 ]
 
-ALLOWED_HOSTS = [
-  "*",
-]
+ALLOWED_HOSTS = ['.up.railway.app']
 
 # Fallo: acceso sin autenticación
 LOGIN_URL = '/login/'
@@ -61,6 +60,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Agregar WhiteNoise al middleware (debe ir después de SecurityMiddleware)
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -146,6 +146,10 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, STATIC_URL),
 ]
+
+STATIC_ROOT = BASE_DIR / 'assets'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 API_URL = 'https://JosephMiranda87.pythonanywhere.com/landing/api/index/'
 
