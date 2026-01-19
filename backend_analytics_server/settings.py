@@ -35,8 +35,9 @@ DEBUG = False
 CSRF_TRUSTED_ORIGINS = [
   "https://*.app.github.dev", # Solo si utiliza Codespaces
   "https://localhost:8000",
+  "https://*.up.railway.app",
   "http://127.0.0.1:8000",
-  "https://*.up.railway.app"
+
 ]
 
 ALLOWED_HOSTS = ['.up.railway.app']
@@ -144,9 +145,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, STATIC_URL),
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATIC_ROOT = BASE_DIR / 'assets'
 
